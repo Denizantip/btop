@@ -2999,7 +2999,7 @@ namespace Proc {
 			}
 
 			for (auto t = tree_procs.begin(); t != tree_procs.end(); ++t) {
-				_collect_prefixes(*t, t == tree_procs.end() - 1, "");
+				_collect_prefixes(*t, t == tree_procs.end() - 1);
 			}
 
 			//? Recursive sort over tree structure to account for collapsed processes in the tree

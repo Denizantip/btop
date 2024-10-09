@@ -432,5 +432,5 @@ namespace Proc {
 				   int cur_depth, bool collapsed, const string& filter,
 				   bool found = false, bool no_update = false, bool should_filter = false);
 
-	void _collect_prefixes(tree_proc& t, bool is_last, const string &header);
+	void _collect_prefixes(tree_proc& t, bool is_last, const string &header = "");
 }

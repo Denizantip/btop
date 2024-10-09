@@ -193,19 +193,15 @@ namespace Proc {
 	}
 
 	void _collect_prefixes(tree_proc &t, const bool is_last, const string &header) {
-		bool is_filtered = t.entry.get().filtered;
-		if (is_filtered) {
-			t.entry.get().depth = 0;
-		}
-		if (!t.children.empty()) {
-			t.entry.get().prefix = header + (t.entry.get().collapsed ? "[+]─": "[-]─");
-		}
-		else {
-			t.entry.get().prefix = header + (is_last ? " └─": " ├─");
-		}
+		const bool is_filtered = t.entry.get().filtered;
+		if (is_filtered) t.entry.get().depth = 0;
+
+		if (!t.children.empty()) t.entry.get().prefix = header + (t.entry.get().collapsed ? "[+]─": "[-]─");
+		else t.entry.get().prefix = header + (is_last ? " └─": " ├─");
+
 		for (auto child = t.children.begin(); child != t.children.end(); ++child) {
 			_collect_prefixes(*child, child==(t.children.end() - 1),
-				(is_filtered ? "": header + (is_last ? "   ": " │ ")));
+				is_filtered ? "": header + (is_last ? "   ": " │ "));
 		}
 	}
 }
